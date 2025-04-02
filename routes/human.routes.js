@@ -21,6 +21,11 @@ router.get('/login', humanController.showLogin);
 //8. LOGIN FORM
 router.post('/Login', humanController.Login);
 
+//9. OPEN EDIT FORM
+router.get('/edit/:id', humanController.showEditProfile)
+
+//10. EDIT HUMAN POST 
+router.post('/edit/:id', multer('human'), humanController.editHumanProfile)
 
 
 
