@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/fonts.css" />
+
+  </head>
+  <body>
+    <header>
+      <%- include('modules/navbar.ejs') %>
+    
+      <section class="title">
+        <div class="container">
+          <img src="/assets/pawyBuddyLogoDark.png" alt="">
+          <h1>Welcome to <span class="pawyBuddy">Pawy Buddy!</span></h1>
+        </div>
+      </section>
+    
+    </header>
+
+    <main>
+     
+      
+      <section class="container">
+        
+        <div class="community">
+          <h2>Meet our community</h2>
+        </div>
+
+        <div class="human-Img-Index">
+          <% result.forEach( (elem) => { %>        
+          <div class="imgDiv">
+            <a href="/human/profile/<%= elem.human_id %>">
+              <img
+                  src="/images/human/<%= elem.human_img ? elem.human_img : 'imgDefault.png' %>"
+                  alt=""
+                />
+            </a>
+              <p><%= elem.human_name %> <%= elem.human_lastName %></p>
+          </div>
+          <% }) %>
+        </div>
+
+      </section>
+
+      <section class="container growing">
+          <div class="separator"></div>
+          <article>
+            <h2>We are growing more and more!</h2>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias laudantium at sed beatae sapiente nobis natus quibusdam culpa soluta ab modi aliquam quas praesentium voluptatum accusamus, dolores est itaque molestiae quasi ducimus dolorum consequatur. Perspiciatis aperiam quas facilis odio perferendis! Fuga illo libero architecto officia? Eum incidunt quas fuga quidem.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi aliquid repellendus aut distinctio delectus molestiae laudantium suscipit, laborum nisi recusandae.
+            </p>
+          </article>
+
+          <div class="separator"></div>
+
+          <h3></h3>
+        </section>
+
+        <section class="container index-img-animals">
+          <h3>Some of our Pawy Buddies!</h3>
+          <div class=" index-img-animals">
+            <img src="/images/animal/1731953852262-a6.JPG" alt="">
+            <img src="/images/animal/1731962679186-a31.jpg" alt="">
+            <img src="/images/animal/a32.jpeg" alt="">
+          </div>
+        </section>
+
+        <section class="container waiting">
+          <h3>We are waiting for you!</h3>
+          <img src="/assets/pawyBuddyLogoDark.png" alt="">
+
+          <a class="start" href="/human/register">Start!</a>
+        </section>
+    
+    </main>
+
+  </body>
+
+  <footer>
+    <%- include('modules/footer.ejs') %>
+  </footer>
+</html>
+

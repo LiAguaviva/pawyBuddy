@@ -1,0 +1,47 @@
+@font-face {
+  font-family: "aleo";
+  src: url("../assets/fonts/Aleo/WEB/aleo-regular-webfont.woff2") format("woff2"),
+       url("../assets/fonts/Aleo/WEB/aleo-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MontBlanc";
+  src: url("../assets/fonts/MontBlanc/WEB/MontBlancDemo-Bold.woff") format("woff"),
+       url("../assets/fonts/MontBlanc/WEB/MontBlancDemo-Bold.woff2") format(".woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Squad";
+  src: url("../assets/fonts/Squad/OTF/Squad-Regular.otf") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "grand-hotel";
+  src: url("../assets/fonts/grand-hotel_5.1.0/webfonts/grand-hotel-latin-400-normal.woff") format("woff"),
+  url("../assets/fonts/grand-hotel_5.1.0/webfonts/grand-hotel-latin-400-normal.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "IntroScript";
+  src: url("../assets/fonts/IntroScript/Non-commercial/WEB/IntroScript-Trial-Regular.woff") format("woff"),
+       url("../assets/fonts/IntroScript/Non-commercial/WEB/IntroScript-Trial-Regular.woff2") format(".woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body, button {
+  font-family: 'Squad';
+}
+
+.pawyBuddy {
+  font-family: 'grand-hotel';
+}

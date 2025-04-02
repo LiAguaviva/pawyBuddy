@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pawy Buddy Add</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/fonts.css" />
+  </head>
+  <body>
+    <header>
+      <%- include('modules/navbar.ejs') %>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="title-form">
+          <img class="form-img" src="/assets/a28.JPG" alt="">
+          <h2>Add a Pawy Buddy</h2>
+        </div>
+        <div class="form-container">
+          <form
+          action="/animal/addSelect"
+          method="post"
+          enctype="multipart/form-data">
+          <div class="form-section">
+            <label for="inputName">name</label>
+            <input
+            type="text"
+            id="inputName"
+            aria-describedby="name"
+            placeholder="name"
+            name="animal_name">
+          </div>
+          <div class="form-section">
+            <label for="description">describe your animal friend</label>
+           <textarea
+           maxlength="250"
+           name="description"
+           id="description"
+           aria-describedby="describe your animal friend"
+           ></textarea>
+          </div>
+          <div class="form-section">
+            <label for="inputYear">When did you addopt your friend?</label>
+            <input
+            type="number"
+            min="1901"
+            max="2155"
+            id="inputYear"
+            aria-describedby="adopt year"
+            placeholder="0000"
+            name="adopt_year">
+          </div>
+          <div class="form-section">
+            <label for="species">What species?</label>
+            <input
+            type="text"
+            id="species"
+            aria-describedby="species"
+            placeholder="species"
+            name="species">
+          </div>
+          <div class="form-section">
+            <p>upload an image</p>
+            <label for="inputImg">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 96C0 60.7 28.7 32 64 32l384 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6l96 0 32 0 208 0c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
+            </label>
+            <input
+            type="file"
+            id="inputImg"
+            aria-describedby="upload an image"
+            name="img"
+            hidden>
+          </div>
+          <div class="form-section">
+            <select name="human_id">
+              <option disabled selected class="selectOption"> Select a human </option>
+              <% result.forEach( (elem) => { %>
+                <option value="<%= elem.human_id %>"> <%= elem.human_name %> </option>
+              <% }); %>
+            </select>
+          </div>
+          <div class="alertMssg">
+            <p> <%= typeof message != 'undefined' ? message : null %> </p>
+          </div>
+          <div class="buttons-sect">
+            <button type="submit">Submit</button>
+            <button type="reset">Clean</button>
+            <button type="button" onclick="window.location.href='/'">Cancel</button>
+          </div>
+      
+          </form>
+        </div>
+      </div>
+
+      <div class="form-logo">
+        <img src="/assets/pawyBuddyLogoDark.png" alt="">
+        <h3>The family is growing!</h3>
+      </div>
+    </main>
+    <footer><%- include('modules/footer.ejs') %></footer>
+
+  </body>
+</html>
+

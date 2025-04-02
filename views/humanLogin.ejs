@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>human register</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/fonts.css" />
+    <script src="https://kit.fontawesome.com/48c70cc860.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header><%- include('modules/navbar.ejs') %></header>
+    
+    <div class="container">
+      <div class="title-form">
+        <img class="form-img" src="/assets/a40.JPG" alt="">
+        <h2>Login!</h2>
+      </div>
+      <div class="form-container">
+        <form
+          action="/human/Login"
+          method="post"
+        >
+          <div class="form-section">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              aria-describedby="email"
+              placeholder="sample@sample.com"
+              name="email"
+            />
+          </div>
+          <div class="form-section">
+            <label for="inputPassword">Password</label>
+            <input
+              type="password"
+              id="inputPassword"
+              aria-describedby="password"
+              placeholder="password"
+              name="password"
+            />
+          </div>
+          <div class="alertMssg">
+            <p> <%= typeof message != 'undefined' ? message : null %> </p>
+          </div>
+          <div class="buttons-sect">
+            <button type="submit">Submit</button>
+            <button type="reset">Clean</button>
+            <button type="button" onclick="window.location.href='/'">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="form-logo">
+      <img src="/assets/pawyBuddyLogoDark.png" alt="">
+      <h3>Not registered yet?</h3>
+      <a href="/human/register" class="start">Start here!</a>
+    </div>
+
+    <footer><%- include('modules/footer.ejs') %></footer>
+  </body>
+</html>

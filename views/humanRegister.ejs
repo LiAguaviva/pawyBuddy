@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>human register</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/fonts.css" />
+    <script src="https://kit.fontawesome.com/48c70cc860.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header><%- include('modules/navbar.ejs') %></header>
+    
+    <div class="container">
+      <div class="title-form">
+        <img class="form-img" src="/assets/a1.JPG" alt="">
+        <h2>Be part of our family!</h2>
+      </div>
+      <div class="form-container">
+        <form
+          action="/human/register"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="form-section">
+            <label for="inputName">Name</label>
+            <input
+              type="text"
+              id="inputName"
+              aria-describedby="name"
+              placeholder="name"
+              name="human_name"
+            />
+          </div>
+          <div class="form-section">
+            <label for="inputLastName">Last Name</label>
+            <input
+              type="text"
+              id="inputLastName"
+              aria-describedby="Last Name"
+              placeholder="Lastname"
+              name="human_lastName"
+            />
+          </div>
+          <div class="form-section">
+            <label for="Description">Describe yourself</label>
+            <textarea
+            name="human_description"
+            maxlength="250"
+            id="descripcion"></textarea>
+          </div>
+          <div class="form-section">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              aria-describedby="email"
+              placeholder="sample@sample.com"
+              name="email"
+            />
+          </div>
+          <div class="form-section">
+            <label for="phone">Phone</label>
+            <input
+              type="text"
+              id="phone"
+              aria-describedby="phone"
+              placeholder="phone"
+              name="phone"
+            />
+          </div>
+          <div class="form-section">
+            <label for="inputPassword">Password</label>
+            <input
+              type="password"
+              id="inputPassword"
+              aria-describedby="password"
+              placeholder="password"
+              name="password"
+            />
+          </div>
+          <div class="form-section">
+            <label for="inputRepPassword">Repeat password</label>
+            <input
+              type="password"
+              id="inputRepPassword"
+              aria-describedby="repeat password"
+              placeholder="repeat password"
+              name="repPassword"
+            />
+          </div>
+          <div class="form-section">
+            <p>upload your avatar</p>
+            <label for="inputImg">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 96C0 60.7 28.7 32 64 32l384 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6l96 0 32 0 208 0c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
+            </label>
+            <input
+              type="file"
+              id="inputImg"
+              aria-describedby="upload your avatar"
+              name="img"
+              hidden
+            />
+          </div>
+          <div class="alertMssg">
+            <p> <%= typeof message != 'undefined' ? message : null %> </p>
+          </div>
+          <div class="buttons-sect">
+            <button type="submit">Submit</button>
+            <button type="reset">Clean</button>
+            <button type="button" onclick="window.location.href='/'">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="form-logo">
+      <img src="/assets/pawyBuddyLogoDark.png" alt="">
+      <h3>Welcome aboard!</h3>
+    </div>
+
+    <footer><%- include('modules/footer.ejs') %></footer>
+  </body>
+</html>

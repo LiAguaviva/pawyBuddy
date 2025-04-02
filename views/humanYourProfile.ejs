@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>human profile</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/fonts.css" />
+  </head>
+  <body>
+    <header><%- include('modules/navbar.ejs') %></header>
+    <main>
+      <div>
+        <section class="profileTitle container">          
+            <h2>
+              <!-- Meet <%= resultHuman.human_name %> -->
+            </h2>
+        </section>
+          
+        <div class="profileSect">
+        <section class="profileCont container">
+          <img
+          src="/images/human/<%= resultHuman.human_img ? resultHuman.human_img : 'imgDefault.png' %>"
+          alt=""
+        />
+            <div class="profileData">
+              <h3>
+                <%= resultHuman.human_name %> <%= resultHuman.human_lastName %>
+              </h3>
+              <a href="mailto:<%= resultHuman.email %>">
+                <p><%= resultHuman.email %></p>
+              </a>
+              <p><%= resultHuman.phone %></p>
+              <p><%= resultHuman.human_description %></p>
+
+              <div class="buttons-sect navProfileButtons">
+                <button onclick="window.location.href='/human/Profile/<%= resultHuman.human_id %>'">Edit</button>
+              </div>
+              </div>
+
+            </div>
+          </section>
+        </div>
+
+        <div class="container">
+          <h2 class="cardsTitle">Look at this Pawy buddy!!!</h2>
+          <section class="cardsSection">
+            <% resultAnimal.forEach( (elem) => { %>
+            <div class="card">
+              <img
+                src="/images/animal/<%= elem.animal_img ? elem.animal_img : 'imgDefault.png' %>"
+                alt=""
+              />
+              <div class="cardBody">
+                <h3><%= elem.animal_name %></h3>
+                <p><%= elem.species %></p>
+                <p>Adopted in <%= elem.adopt_year %></p>
+                <p><%= elem.description %></p>
+              </div>
+
+              <div class="buttons-sect">
+                <button
+                  onclick="window.location.href='/animal/edit/<%= elem.animal_id %>'"
+                >
+                  Edit
+                </button>
+
+                <button
+                  onclick="window.location.href='/animal/delLogicAnimal/<%= elem.animal_id %>/<%= elem.human_id %>'"
+                >
+                  logic delete
+                </button>
+
+                <button
+                  onclick="window.location.href='/animal/delTotalAnimal/<%= elem.animal_id %>/<%= elem.human_id %>'"
+                >
+                  total delete
+                </button>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        </section>
+      </div>
+
+      <div class="profileTitle container">
+        <div class="buttons-sect navProfileButtons">
+          <button onclick="window.location.href='/animal/add/<%= resultHuman.human_id %>'">Add a Pawy Buddy!</button>
+        </div>
+        <button class="done" onclick="window.location.href='/human/Profile/<%= resultHuman.human_id %>'">Done</button>
+      </div>
+
+    </main>
+
+    <footer><%- include('modules/footer.ejs') %></footer>
+  </body>
+</html>
