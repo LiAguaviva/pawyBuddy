@@ -61,5 +61,7 @@ typings/
 .next
 
 # humand and animals images
-human/*.jpg
-animal/*.jpg
+public/images/human/*.jpg
+public/images/human/*.jpeg
+public/images/animal/*.jpg
+public/images/animal/*.jpeg
