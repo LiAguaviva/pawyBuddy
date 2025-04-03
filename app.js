@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
 
 var indexRouter = require('./routes/index.routes');
 var humanRouter = require('./routes/human.routes');
@@ -20,7 +21,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: true
+}));
+app.get("/logout", (req, res) => {
+  req.session.destroy(() => {
+      res.redirect("/");
+  });
+});
 
+app.use((req, res, next) => {
+  res.locals.userId = req.session.userId || null;
+  res.locals.userName = req.session.userName || null;
+  next();
+});
 app.use('/', indexRouter);
 app.use('/human', humanRouter);
 app.use('/animal', animalRouter);

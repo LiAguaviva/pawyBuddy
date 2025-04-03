@@ -34,7 +34,6 @@ router.post('/edit/:id', multer('human'), humanController.editHumanProfile)
 
 
 
-
 module.exports = router;
 
 

@@ -8,11 +8,18 @@
         </div>
       </li>
       <div class="links">
-        <li>
-          <div>
-            <a href="/">HOME</a>
-          </div>
-        </li>
+        <% if (userId) { %>
+          <li>
+            <div>
+              <a href="/human/yourProfile/<%= userId %>">Edit Profile</a>
+            </div>
+          </li>
+          <li>
+            <div>
+              <a href="/Logout">Logout</a>
+            </div>
+          </li>
+          <% } else { %>
         <li>
           <div>
             <a href="/human/Login">Login</a>
@@ -23,6 +30,7 @@
             <a href="/human/Register">Create Account</a>
           </div>
         </li>
+      <% } %>
         <!-- <li>
           <div>
             <a href="/animal/addSelect">Add a Pawy Buddy</a>
@@ -32,3 +40,5 @@
     </ul>
   </div>
 </nav>
+
+<% console.log('* * * * * * *' , userId) %>

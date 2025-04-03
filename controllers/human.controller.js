@@ -165,6 +165,8 @@ class HumanController {
             if (!resultCompare) {
               res.render('humanLogin', {message: 'incorrect email or password'})
             } else {
+              req.session.userId = result[0].human_id;
+              req.session.userName = result[0].human_name;
               res.redirect(`/human/profile/${result[0].human_id}`)
             }
           })

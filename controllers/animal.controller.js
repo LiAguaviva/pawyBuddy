@@ -137,6 +137,7 @@ class AnimalController {
   if (!animal_name || !description || !adopt_year || !species) {
     let result = {
       animal_id: id,
+      human_id: human_id,
       animal_name: animal_name,
       description: description,
       adopt_year: adopt_year,
