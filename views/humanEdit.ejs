@@ -11,7 +11,6 @@
     
     <div class="container">
       <div class="title-form">
-        <img class="form-img" src="/assets/a1.JPG" alt="">
         <h2>Edit your profile</h2>
       </div>
       <div class="form-container">
@@ -101,12 +100,19 @@
               Cancel
             </button>
           </div>
+
         </form>
       </div>
     </div>
     <div class="form-logo">
       <img src="/assets/pawyBuddyLogoDark.png" alt="">
       <!-- <h3>Save your changes!</h3> -->
+      <button
+      class="deleteAccountButton"
+      onclick="window.location.href='/human/delLogicAccount/<%= result.human_id %>'"
+    >
+      Delete Account
+    </button>
     </div>
 
     <footer><%- include('modules/footer.ejs') %></footer>

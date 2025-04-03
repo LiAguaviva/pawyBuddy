@@ -11,12 +11,6 @@
     <header><%- include('modules/navbar.ejs') %></header>
     <main>
       <div>
-        <section class="profileTitle container">          
-            <h2>
-              <!-- Meet <%= resultHuman.human_name %> -->
-            </h2>
-        </section>
-          
         <div class="profileSect">
         <section class="profileCont container">
           <img
@@ -59,10 +53,10 @@
         </section>
       </div>
 
-      <div class="profileTitle container">
+      <div class="profileButtons container">
         <div class="buttons-sect navProfileButtons">
-          <button onclick="window.location.href='/human/profile/<%= resultHuman.human_id - 1 %>'">Previous</button>
-          <button onclick="window.location.href='/human/profile/<%= resultHuman.human_id + 1%>'">Next</button>
+          <button onclick="window.location.href='/human/profile/<%= prevId %>'">Previous</button>
+          <button onclick="window.location.href='/human/profile/<%= nextId %>'">Next</button>
         </div>
       </div>
 

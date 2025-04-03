@@ -22,16 +22,13 @@ router.get('/login', humanController.showLogin);
 router.post('/Login', humanController.Login);
 
 //9. OPEN EDIT FORM
-router.get('/edit/:id', humanController.showEditProfile)
+router.get('/edit/:id', humanController.showEditProfile);
 
 //10. EDIT HUMAN POST 
-router.post('/edit/:id', multer('human'), humanController.editHumanProfile)
+router.post('/edit/:id', multer('human'), humanController.editHumanProfile);
 
-
-
-
-
-
+//11. DELETE ACCOUNT
+router.get('/delLogicAccount/:human_id', humanController.deleteAccount);
 
 
 module.exports = router;

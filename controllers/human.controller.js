@@ -76,34 +76,46 @@ class HumanController {
   //5. HUMAN PROFILE
   showHumanProfile = (req, res, next) => {
     const { id } = req.params;
-    let sqlHuman =
-      'SELECT * FROM human WHERE human_id = ? AND human_is_deleted = 0';
-    let sqlAnimal =
-      'SELECT * FROM animal WHERE human_id = ? AND animal_is_deleted = 0';
+    let sqlHuman = `SELECT * FROM human WHERE human_id = ? AND human_is_deleted = 0`;
+    let sqlAnimal = `SELECT * FROM animal WHERE human_id = ? AND animal_is_deleted = 0`;
 
     connection.query(sqlHuman, [id], (errorHuman, resultHuman) => {
-      if (errorHuman) {
-        throw errorHuman;
-      } else {
-        if (resultHuman.length == 0) {
-          next();
+        if (errorHuman) {
+            throw errorHuman;
         } else {
-          connection.query(sqlAnimal, [id], (errorAnimal, resultAnimal) => {
-            if (errorAnimal) {
-              throw errorAnimal;
+            if (resultHuman.length == 0) {
+                next();
             } else {
-              console.log('RESULT HUMAN PROFILE ///////////////', resultHuman[0]);
+                connection.query(sqlAnimal, [id], (errorAnimal, resultAnimal) => {
+                    if (errorAnimal) {
+                        throw errorAnimal;
+                    } else {
+                        // PREVIOUS AND NEXT PROFILES IDs
+                        this.getPreviousId(id, (err, prevId) => {
+                            if (err) {
+                                return res.status(500).send('Server error');
+                            }
 
-              res.render('humanProfile', {
-                resultHuman: resultHuman[0],
-                resultAnimal,
-              });
+                            this.getNextId(id, (err, nextId) => {
+                                if (err) {
+                                    return res.status(500).send('Server error');
+                                }
+
+                                res.render('humanProfile', {
+                                    resultHuman: resultHuman[0],
+                                    resultAnimal,
+                                    prevId,
+                                    nextId
+                                });
+                            });
+                        });
+                    }
+                });
             }
-          });
         }
-      }
     });
-  };
+};
+
 
  
 
@@ -232,16 +244,17 @@ class HumanController {
         if (errorHash) {
           throw errorHash;
         } else {
-          let sql = 'UPDATE human SET human_name = ?, human_lastName = ?, password = ?, human_description = ?, phone = ?';
+          let sql = 'UPDATE human SET human_name = ?, human_lastName = ?, password = ?, human_description = ?, phone = ? WHERE human_id = ?';
           let values = [
             human_name,
             human_lastName,
             hash,
             human_description,
             phone,
+            id
           ];
           if (req.file) {
-            sql = 'UPDATE human SET human_name = ?, human_lastName = ?, password = ?, human_description = ?, phone = ?, human_img = ?';
+            sql = 'UPDATE human SET human_name = ?, human_lastName = ?, password = ?, human_description = ?, phone = ?, human_img = ? WHERE human_id = ?';
             values.push(req.file.filename);
           }
 
@@ -261,6 +274,69 @@ class HumanController {
       });
     }
   }
+
+  // DELETE ACCOUNT
+  deleteAccount = (req, res) => {
+    const {human_id} = req.params;
+    let sql = 'UPDATE human SET human_is_deleted = 1 WHERE human_id = ?';
+    connection.query(sql, [human_id], (error, result) => {
+      if (error) {
+        throw error;
+      } else {
+        res.redirect('/')
+      }
+    })
+  }
+
+  //11. PREVIOUS ID (TO SEE PREVIOUS PROFILE) 
+    getPreviousId = (currentId, callback) => {
+      let sql = 'SELECT human_id FROM human WHERE human_is_deleted = 0 ORDER BY human_id DESC';
+  
+      connection.query(sql, (error, result) => {
+        if (error) {
+          return callback(error, null);
+        }
+  
+        const ids = result.map(row => row.human_id); // Obtener todos los IDs en orden descendente
+        const index = ids.indexOf(currentId);
+  
+        let prevId;
+        if (index === -1 || index === ids.length - 1) {
+          prevId = ids[0]; // Si no encuentra el ID o está en el primero, devuelve el último
+        } else {
+          prevId = ids[index + 1]; // Devuelve el ID anterior en la lista ordenada
+        }
+  
+        callback(null, prevId);
+      });
+    };
+
+    //12. NEXT ID (TO SEE NEXT PROFILE)
+    getNextId = (currentId, callback) => {
+      let sql = `
+          SELECT human_id FROM human 
+          WHERE human_id > ? AND human_is_deleted = 0 
+          ORDER BY human_id ASC 
+          LIMIT 1`;
+  
+      connection.query(sql, [currentId], (error, result) => {
+          if (error) {
+              return callback(error, null);
+          }
+          if (result.length > 0) {
+              callback(null, result[0].human_id);
+          } else {
+              // Si no hay siguiente, obtener el ID más bajo
+              let minSql = `SELECT MIN(human_id) AS min_id FROM human WHERE human_is_deleted = 0`;
+              connection.query(minSql, (error, minResult) => {
+                  if (error) {
+                      return callback(error, null);
+                  }
+                  callback(null, minResult[0].min_id);
+              });
+          }
+      });
+  };
 
 };
 
