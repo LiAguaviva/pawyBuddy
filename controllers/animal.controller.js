@@ -6,7 +6,6 @@ class AnimalController {
 
   //1. CREATE ANIMAL FROM HUMAN PROFILE
   createAnimal = (req, res) => {
-    console.log(req.file);
     const {human_id} = req.params;
     const {animal_name, description, adopt_year, species} = req.body;
 
@@ -34,7 +33,6 @@ class AnimalController {
     if (error) {
       throw error;
     } else {
-      console.log(result);
       res.render('animalAdd', {result});
     }
   })
@@ -49,8 +47,6 @@ class AnimalController {
 
  //3. ADD ANIMAL - FROM NAVBAR- POST
  addAnimalPostSelect = (req, res) => {
-  console.log(req.body, 'BODYYYYYYYYYYYYYYYYYYY');
-
   const {animal_name, description, adopt_year, species, human_id} = req.body;
 
   if ( !animal_name || !description || !adopt_year || !species || !human_id) {
@@ -81,8 +77,6 @@ class AnimalController {
 
 //3.5 ADD ANIMAL  - FROM PROFILE
  addAnimalPost = (req, res) => {
-  console.log(req.body, 'BODYYYYYYYYYYYYYYYYYYY');
-  
   const {human_id} = req.params;
   const {animal_name, description, adopt_year, species} = req.body;
 

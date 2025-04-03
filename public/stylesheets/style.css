@@ -79,7 +79,6 @@ a {
 .buttons-sect {
   display: flex;
   gap: var(--gapS);
-  /* padding-top: var(--gapM); */
 
   button {
     min-width: max-content;
@@ -122,7 +121,6 @@ nav {
     list-style: none;
     padding: 0;
     display: flex;
-    /* flex-wrap: wrap; */
     column-gap: var(--gapM);
     row-gap: var(--gapS);
   }
@@ -139,7 +137,6 @@ nav {
 }
 
 .container {
-  /* background-color: var(--mid1); */
   width: 1200px;
   margin-inline: auto;
 
@@ -150,7 +147,6 @@ nav {
 
 .title {
   background-color: var(--mid1);
-  /* min-height: 18rem; */
   align-content: center;
   text-align: center;
   padding-block: var(--paddingL);
@@ -226,7 +222,6 @@ nav {
 }
 
 .growing {
-  /* background-color: var(--mid1); */
   padding-block: var(--paddingL);
   display: flex;
   flex-direction: column;
@@ -377,7 +372,6 @@ nav {
   }
 
   .card {
-    /* background-color: var(--mid2); */
     width: var(--imgM);
     display: flex;
     flex-direction: column;

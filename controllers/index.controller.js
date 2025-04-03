@@ -11,9 +11,7 @@ class IndexController {
       if (error){
         throw error;
       } else {
-        console.log('RRRRRRRRRRRRRRRRRRRRRRRRR', result);
         res.render('index', {result});
-        
       };
     });
   };

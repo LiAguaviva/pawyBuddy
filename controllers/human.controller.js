@@ -9,9 +9,6 @@ class HumanController {
 
   // 2. POST HUMAN REGISTER
   register = (req, res) => {
-    console.log(req.file);
-    console.log(req.body);
-
     const {
       human_name,
       human_lastName,
@@ -138,9 +135,6 @@ class HumanController {
             if (errorAnimal) {
               throw errorAnimal;
             } else {
-              console.log('RESULT HUMAN YOUR PROFILE', resultHuman[0]);
-              // console.log('ANIMAL RESSSSSSSSSSSSSSSSS', resultAnimal);
-
               res.render('humanYourProfile', {
                 resultHuman: resultHuman[0],
                 resultAnimal,
@@ -160,7 +154,6 @@ class HumanController {
 
   //9. LOGIN FORM 
   Login = (req, res) => {
-    console.log(req.body);
     const {email, password} = req.body;
 
     let sql = 'SELECT * FROM human WHERE email = ? AND human_is_deleted = 0';
@@ -182,10 +175,7 @@ class HumanController {
               res.redirect(`/human/profile/${result[0].human_id}`)
             }
           })
-          console.log(result);
         }
-        console.log(result);
-        
       }
     })
     
@@ -211,7 +201,6 @@ class HumanController {
   // 10. EDIT HUMAN POST 
   editHumanProfile = (req, res) => {
     const {id} = req.params;
-    console.log('*************iddddd', req.params);
     const {
       human_name,
       human_lastName,
@@ -275,7 +264,7 @@ class HumanController {
     }
   }
 
-  // DELETE ACCOUNT
+  //11. DELETE ACCOUNT
   deleteAccount = (req, res) => {
     const {human_id} = req.params;
     let sql = 'UPDATE human SET human_is_deleted = 1 WHERE human_id = ?';
@@ -288,7 +277,7 @@ class HumanController {
     })
   }
 
-  //11. PREVIOUS ID (TO SEE PREVIOUS PROFILE) 
+  //PREVIOUS ID (TO SEE PREVIOUS PROFILE) 
     getPreviousId = (currentId, callback) => {
       let sql = 'SELECT human_id FROM human WHERE human_is_deleted = 0 ORDER BY human_id DESC';
   
@@ -297,21 +286,21 @@ class HumanController {
           return callback(error, null);
         }
   
-        const ids = result.map(row => row.human_id); // Obtener todos los IDs en orden descendente
+        const ids = result.map(row => row.human_id);
         const index = ids.indexOf(currentId);
   
         let prevId;
         if (index === -1 || index === ids.length - 1) {
-          prevId = ids[0]; // Si no encuentra el ID o está en el primero, devuelve el último
+          prevId = ids[0]; /
         } else {
-          prevId = ids[index + 1]; // Devuelve el ID anterior en la lista ordenada
+          prevId = ids[index + 1]; 
         }
   
         callback(null, prevId);
       });
     };
 
-    //12. NEXT ID (TO SEE NEXT PROFILE)
+    //NEXT ID (TO SEE NEXT PROFILE)
     getNextId = (currentId, callback) => {
       let sql = `
           SELECT human_id FROM human 
@@ -326,7 +315,6 @@ class HumanController {
           if (result.length > 0) {
               callback(null, result[0].human_id);
           } else {
-              // Si no hay siguiente, obtener el ID más bajo
               let minSql = `SELECT MIN(human_id) AS min_id FROM human WHERE human_is_deleted = 0`;
               connection.query(minSql, (error, minResult) => {
                   if (error) {
