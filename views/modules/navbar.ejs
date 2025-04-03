@@ -1,44 +1,27 @@
 <nav>
-  <div class="navbar">
-    <ul>
-      <li>
-        <div>
-          
-          <a href="/" class="pawyBuddy"><img src="/assets/pawyBuddyLogoClear.png" alt=""> Pawy Buddy</a>
-        </div>
-      </li>
-      <div class="links">
-        <% if (userId) { %>
-          <li>
-            <div>
-              <a href="/human/yourProfile/<%= userId %>">Edit Profile</a>
-            </div>
-          </li>
-          <li>
-            <div>
-              <a href="/Logout">Logout</a>
-            </div>
-          </li>
-          <% } else { %>
-        <li>
-          <div>
-            <a href="/human/Login">Login</a>
-          </div>
-        </li>
-        <li>
-          <div>
-            <a href="/human/Register">Create Account</a>
-          </div>
-        </li>
-      <% } %>
-        <!-- <li>
-          <div>
-            <a href="/animal/addSelect">Add a Pawy Buddy</a>
-          </div>
-        </li> -->
-      </div>
-    </ul>
+  <div class="navbar container">
+    <a href="/" class="pawyBuddy">
+      <img src="/assets/pawyBuddyLogoClear.png" alt="">
+      <span>Pawy Buddy</span>
+    </a>
+    <div class="links">
+        <ul>
+          <% if (userId) { %>
+            <li>
+              <a href="/human/yourProfile/<%= userId %>">Edit profile</a>
+            </li>
+            <li>
+                <a href="/Logout">Log out</a>
+            </li>
+            <% } else { %>
+            <li>
+              <a href="/human/Login">Log in</a>
+            </li>
+            <li>
+              <a href="/human/Register">Sign in</a>
+            </li>
+        <% } %>
+      </ul>
+    </div>
   </div>
 </nav>
-
-<% console.log('* * * * * * *' , userId) %>
