@@ -2,7 +2,6 @@
 
 Pawy Buddy is a social network for pet owners. Users can create accounts, add pet cards, edit and delete both pet cards and their accounts.
 
-![Pawy Buddy Logo](Screenshots/paeyBuddy_Logo.png)
 ![Pawy Buddy Home](Screenshots/pawyBuddy_home.png)
 ![Pawy Buddy Sign In](Screenshots/pawyBuddy_Sign%20In.png)
 ![Pawy Buddy Log In](Screenshots/pawyBuddy_LogIn.png)
@@ -10,6 +9,7 @@ Pawy Buddy is a social network for pet owners. Users can create accounts, add pe
 ![Pawy Buddy Edit Profile](Screenshots/pawyBuddy_editProfile.png)
 ![Pawy Buddy Edit Profile Form](Screenshots/pawyBuddy_EditProfileForm.png)
 ![Pawy Buddy Edit Animal Form](Screenshots/pawyBuddy_editAnimalForm.png)
+![Pawy Buddy Logo](Screenshots/paeyBuddy_Logo.png)
 
 ## 📌 Features
 
