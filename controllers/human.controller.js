@@ -291,7 +291,7 @@ class HumanController {
   
         let prevId;
         if (index === -1 || index === ids.length - 1) {
-          prevId = ids[0]; /
+          prevId = ids[0];
         } else {
           prevId = ids[index + 1]; 
         }
